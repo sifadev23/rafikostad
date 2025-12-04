@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رفيق الأستاذ - Rafik Ostad v1.0.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,13 +14,15 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             color: #333;
+            line-height: 1.6;
         }
 
+        /* النافبار */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #2c3e50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -37,7 +40,15 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #3498db;
+            font-size: 1.8rem;
         }
 
         .nav-links {
@@ -48,41 +59,52 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: white;
             font-weight: 500;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #3498db;
         }
 
+        .nav-links i {
+            font-size: 1.1rem;
+        }
+
+        /* الهيرو */
         .hero {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 3rem 2rem;
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
         }
 
         .version {
             display: inline-block;
             background: rgba(255,255,255,0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .version i {
+            margin-left: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .container {
@@ -93,65 +115,29 @@
 
         .section {
             background: white;
-            border-radius: 15px;
+            border-radius: 10px;
             padding: 3rem;
             margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .section h2 {
-            color: #667eea;
+            color: #2c3e50;
             margin-bottom: 2rem;
             font-size: 2rem;
-            border-right: 4px solid #667eea;
-            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #3498db;
         }
 
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .section h2 i {
+            color: #3498db;
+            font-size: 2rem;
         }
 
-        .download-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .download-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .download-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .download-btn {
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
+        /* معرض الصور */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -160,118 +146,300 @@
         }
 
         .gallery-item {
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            background: #f8f9fa;
+            position: relative;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .gallery-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            display: block;
         }
 
+        .gallery-item::after {
+            content: '\f00e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 0.9;
+        }
+
+        /* بطاقة PDF */
+        .pdf-card {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pdf-card i {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pdf-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pdf-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* التحميلات */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .download-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .download-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .download-card i {
+            font-size: 4rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .download-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .download-card p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .download-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+        }
+
+        .download-btn i {
+            font-size: 1rem;
+            color: white;
+            margin: 0;
+        }
+
+        /* صفحة الفيديو */
         .video-container {
             margin-top: 2rem;
-            text-align: center;
         }
 
         .video-placeholder {
-            background: #f0f0f0;
-            padding: 3rem;
+            background: #ecf0f1;
+            padding: 4rem;
             border-radius: 10px;
-            border: 2px dashed #ccc;
+            text-align: center;
+            border: 2px dashed #bdc3c7;
         }
 
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto;
+        .video-placeholder i {
+            font-size: 5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
         }
 
-        .form-group {
+        .video-placeholder h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder p {
+            color: #7f8c8d;
+        }
+
+        /* صفحة التواصل */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .contact-card.email {
+            border-color: #e74c3c;
+        }
+
+        .contact-card.email:hover {
+            border-color: #c0392b;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .contact-card.whatsapp {
+            border-color: #25D366;
+        }
+
+        .contact-card.whatsapp:hover {
+            border-color: #128C7E;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .contact-card.facebook {
+            border-color: #3b5998;
+        }
+
+        .contact-card.facebook:hover {
+            border-color: #2d4373;
+            box-shadow: 0 5px 20px rgba(59, 89, 152, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 4.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #333;
+        .contact-card.email .contact-icon {
+            color: #e74c3c;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
+        .contact-card.whatsapp .contact-icon {
+            color: #25D366;
+        }
+
+        .contact-card.facebook .contact-icon {
+            color: #3b5998;
+        }
+
+        .contact-card h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
             padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .file-upload {
-            border: 2px dashed #667eea;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .file-upload:hover {
-            background: #f8f9ff;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .contact-btn {
+            background: #3498db;
             color: white;
             border: none;
-            padding: 1rem 3rem;
-            border-radius: 25px;
+            padding: 1rem 2rem;
+            border-radius: 5px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            width: 100%;
-            transition: transform 0.3s;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .submit-btn:hover {
-            transform: scale(1.02);
+        .contact-card.email .contact-btn {
+            background: #e74c3c;
         }
 
+        .contact-card.email .contact-btn:hover {
+            background: #c0392b;
+        }
+
+        .contact-card.whatsapp .contact-btn {
+            background: #25D366;
+        }
+
+        .contact-card.whatsapp .contact-btn:hover {
+            background: #128C7E;
+        }
+
+        .contact-card.facebook .contact-btn {
+            background: #3b5998;
+        }
+
+        .contact-card.facebook .contact-btn:hover {
+            background: #2d4373;
+        }
+
+        /* Footer */
         footer {
-            background: rgba(0,0,0,0.9);
+            background: #2c3e50;
             color: white;
             padding: 3rem 2rem;
             margin-top: 3rem;
@@ -287,12 +455,38 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: #667eea;
+            color: #3498db;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section h3 i {
+            font-size: 1.5rem;
         }
 
         .footer-section p {
             line-height: 1.8;
-            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section p i {
+            color: #3498db;
+            width: 20px;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
         }
 
         .copyright {
@@ -300,7 +494,7 @@
             padding-top: 2rem;
             margin-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
+            color: #95a5a6;
         }
 
         .hidden {
@@ -308,16 +502,23 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
             .hero h1 {
                 font-size: 2rem;
             }
 
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
             .section {
                 padding: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -325,11 +526,14 @@
 <body>
     <header>
         <nav>
-            <div class="logo">🎓 رفيق الأستاذ</div>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                رفيق الأستاذ
+            </div>
             <ul class="nav-links">
-                <li><a href="#home" onclick="showPage('home')">الرئيسية</a></li>
-                <li><a href="#videos" onclick="showPage('videos')">شرح بالفيديو</a></li>
-                <li><a href="#contact" onclick="showPage('contact')">الاتصال بنا/الدعم الفني</a></li>
+                <li><a href="#home" onclick="showPage('home')"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#videos" onclick="showPage('videos')"><i class="fas fa-video"></i> الشرح</a></li>
+                <li><a href="#contact" onclick="showPage('contact')"><i class="fas fa-phone"></i> التواصل</a></li>
             </ul>
         </nav>
     </header>
@@ -337,47 +541,71 @@
     <div id="homePage">
         <div class="hero">
             <h1>رفيق الأستاذ - Rafik Ostad</h1>
-            <div class="version">الإصدار 1.0.0</div>
-            <p>برنامج متكامل لإدارة شؤون الأساتذة بطريقة احترافية</p>
+            <div class="version"><i class="fas fa-code-branch"></i> الإصدار 1.0.0</div>
+            <p>برنامج متكامل لإدارة شؤون الأساتذة والمعلمين بطريقة احترافية وسهلة</p>
         </div>
 
         <div class="container">
+            <!-- معرض الصور -->
             <div class="section">
-                <h2>📥 تحميل البرنامج</h2>
-                <div class="download-grid">
-                    <div class="download-card">
-                        <h3>نسخة التثبيت - x64</h3>
-                        <p>للأنظمة 64 بت</p>
-                        <button class="download-btn" onclick="downloadFile('setup-x64')">تحميل Setup x64</button>
-                    </div>
-                    <div class="download-card">
-                        <h3>نسخة التثبيت - x86</h3>
-                        <p>للأنظمة 32 بت</p>
-                        <button class="download-btn" onclick="downloadFile('setup-x86')">تحميل Setup x86</button>
-                    </div>
-                    <div class="download-card">
-                        <h3>نسخة محمولة - x64</h3>
-                        <p>بدون تثبيت - 64 بت</p>
-                        <button class="download-btn" onclick="downloadFile('portable-x64')">تحميل Portable x64</button>
-                    </div>
-                    <div class="download-card">
-                        <h3>نسخة محمولة - x86</h3>
-                        <p>بدون تثبيت - 32 بت</p>
-                        <button class="download-btn" onclick="downloadFile('portable-x86')">تحميل Portable x86</button>
-                    </div>
+                <h2><i class="fas fa-images"></i> معرض الصور</h2>
+                <div class="gallery" id="gallery"></div>
+            </div>
+
+            <!-- كتيب الشرح -->
+            <div class="section">
+                <h2><i class="fas fa-book"></i> كتيب الشرح</h2>
+                <div class="pdf-card" onclick="downloadFile('manual')">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>دليل المستخدم الشامل</h3>
+                    <p>حمّل كتيب PDF الذي يشرح جميع مميزات البرنامج بالتفصيل</p>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        تحميل الكتيب
+                    </button>
                 </div>
             </div>
 
+            <!-- التحميلات -->
             <div class="section">
-                <h2>📖 كتيب الشرح</h2>
-                <p>حمّل كتيب PDF الذي يشرح جميع مميزات البرنامج بالتفصيل</p>
-                <button class="download-btn" style="margin-top: 1rem;" onclick="downloadFile('manual')">📄 تحميل كتيب الشرح PDF</button>
-            </div>
-
-            <div class="section">
-                <h2>🖼️ صور البرنامج</h2>
-                <div class="gallery" id="gallery">
-                    <!-- سيتم ملؤها من JavaScript -->
+                <h2><i class="fas fa-download"></i> تحميل البرنامج</h2>
+                <div class="download-grid">
+                    <div class="download-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>نسخة التثبيت x64</h3>
+                        <p>للأنظمة 64 بت</p>
+                        <button class="download-btn" onclick="downloadFile('setup-x64')">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                    </div>
+                    <div class="download-card">
+                        <i class="fas fa-desktop"></i>
+                        <h3>نسخة التثبيت x86</h3>
+                        <p>للأنظمة 32 بت</p>
+                        <button class="download-btn" onclick="downloadFile('setup-x86')">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                    </div>
+                    <div class="download-card">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>نسخة محمولة x64</h3>
+                        <p>بدون تثبيت - 64 بت</p>
+                        <button class="download-btn" onclick="downloadFile('portable-x64')">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                    </div>
+                    <div class="download-card">
+                        <i class="fas fa-box"></i>
+                        <h3>نسخة محمولة x86</h3>
+                        <p>بدون تثبيت - 32 بت</p>
+                        <button class="download-btn" onclick="downloadFile('portable-x86')">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -386,12 +614,12 @@
     <div id="videosPage" class="hidden">
         <div class="container">
             <div class="section">
-                <h2>🎥 شرح البرنامج بالفيديو</h2>
+                <h2><i class="fas fa-play-circle"></i> شرح البرنامج بالفيديو</h2>
                 <div class="video-container">
                     <div class="video-placeholder">
+                        <i class="fas fa-video"></i>
                         <h3>فيديو شرح البرنامج</h3>
-                        <p>يمكنك إضافة رابط فيديو YouTube أو رفع الفيديو على GitHub</p>
-                        <!-- ضع رابط الفيديو هنا -->
+                        <p>يمكنك إضافة رابط فيديو YouTube أو رفع الفيديو هنا</p>
                         <!-- <iframe width="100%" height="500" src="YOUR_VIDEO_URL" frameborder="0" allowfullscreen></iframe> -->
                     </div>
                 </div>
@@ -402,52 +630,57 @@
     <div id="contactPage" class="hidden">
         <div class="container">
             <div class="section">
-                <h2>📞 الدعم الفني والاتصال بنا</h2>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" name="name" required placeholder="أدخل اسمك الكامل">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" name="email" required placeholder="example@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>عنوان الموضوع</label>
-                        <select name="subject" required>
-                            <option value="">اختر عنوان الموضوع</option>
-                            <option value="activation">طلب تفعيل البرنامج</option>
-                            <option value="run-problem">مشكلة في تشغيل البرنامج</option>
-                            <option value="activation-problem">مشكلة في تفعيل البرنامج</option>
-                            <option value="database-problem">مشكلة في قواعد البيانات</option>
-                            <option value="feature-inquiry">استفسار حول خاصية بالبرنامج</option>
-                            <option value="feature-request">طلب إضافة خاصية جديدة</option>
-                            <option value="other">آخر</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>الرسالة</label>
-                        <textarea name="message" rows="6" required placeholder="اكتب رسالتك هنا..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>إرفاق مستندات أو صور (اختياري)</label>
-                        <div class="file-upload" onclick="document.getElementById('fileInput').click()">
-                            <p>📎 اضغط لرفع الملفات</p>
-                            <p style="font-size: 0.9rem; opacity: 0.7;">صور، PDF، أو مستندات</p>
+                <h2><i class="fas fa-headset"></i> تواصل معنا - الدعم الفني</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #7f8c8d; margin-bottom: 2rem;">
+                    نحن هنا لمساعدتك! اختر الطريقة المناسبة للتواصل معنا
+                </p>
+                
+                <div class="contact-methods">
+                    <!-- البريد الإلكتروني -->
+                    <div class="contact-card email">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <h3>البريد الإلكتروني</h3>
+                        <p>راسلنا عبر البريد الإلكتروني وسنرد عليك في أقرب وقت</p>
+                        <div class="contact-info">
+                            <i class="fas fa-at"></i>
+                            support@rafikostad.com
                         </div>
-                        <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFileSelect(event)">
-                        <div id="fileList" style="margin-top: 1rem;"></div>
-                        <div class="progress-bar" id="progressBar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
+                        <a href="mailto:support@rafikostad.com?subject=طلب دعم فني - رفيق الأستاذ&body=الاسم:%0D%0Aالموضوع:%0D%0A%0D%0Aالرسالة:%0D%0A" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال رسالة
+                        </a>
                     </div>
-                    
-                    <button type="submit" class="submit-btn">إرسال الرسالة</button>
-                </form>
+
+                    <!-- واتساب -->
+                    <div class="contact-card whatsapp">
+                        <i class="fab fa-whatsapp contact-icon"></i>
+                        <h3>واتساب</h3>
+                        <p>تواصل معنا مباشرة عبر الواتساب للحصول على دعم فوري</p>
+                        <div class="contact-info">
+                            <i class="fas fa-phone"></i>
+                            +213 XXX XXX XXX
+                        </div>
+                        <a href="https://wa.me/213XXXXXXXXX?text=مرحباً، أحتاج مساعدة في برنامج رفيق الأستاذ" target="_blank" class="contact-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            فتح محادثة
+                        </a>
+                    </div>
+
+                    <!-- فيسبوك -->
+                    <div class="contact-card facebook">
+                        <i class="fab fa-facebook-f contact-icon"></i>
+                        <h3>فيسبوك</h3>
+                        <p>تابعنا على صفحتنا في فيسبوك للحصول على آخر الأخبار والتحديثات</p>
+                        <div class="contact-info">
+                            <i class="fab fa-facebook-f"></i>
+                            /RafikOstad
+                        </div>
+                        <a href="https://facebook.com/rafikostad" target="_blank" class="contact-btn">
+                            <i class="fab fa-facebook-f"></i>
+                            زيارة الصفحة
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -455,35 +688,35 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>رفيق الأستاذ</h3>
-                <p>برنامج متكامل لإدارة شؤون الأساتذة والمعلمين. نسعى لتوفير أفضل الأدوات التعليمية.</p>
+                <h3><i class="fas fa-graduation-cap"></i> رفيق الأستاذ</h3>
+                <p>برنامج متكامل لإدارة شؤون الأساتذة والمعلمين. نسعى لتوفير أفضل الأدوات التعليمية والإدارية.</p>
             </div>
             <div class="footer-section">
-                <h3>روابط سريعة</h3>
-                <p><a href="#home" onclick="showPage('home')" style="color: white; text-decoration: none;">الرئيسية</a></p>
-                <p><a href="#videos" onclick="showPage('videos')" style="color: white; text-decoration: none;">شرح الفيديو</a></p>
-                <p><a href="#contact" onclick="showPage('contact')" style="color: white; text-decoration: none;">الدعم الفني</a></p>
+                <h3><i class="fas fa-link"></i> روابط سريعة</h3>
+                <p><a href="#home" onclick="showPage('home')"><i class="fas fa-home"></i> الرئيسية</a></p>
+                <p><a href="#videos" onclick="showPage('videos')"><i class="fas fa-video"></i> شرح الفيديو</a></p>
+                <p><a href="#contact" onclick="showPage('contact')"><i class="fas fa-phone"></i> الدعم الفني</a></p>
             </div>
             <div class="footer-section">
-                <h3>تواصل معنا</h3>
-                <p>📧 البريد الإلكتروني: rafikostad23@gmail.com</p>
-                <p>📱 الهاتف: +213 0770008680</p>
-                <p>🌍 الموقع: الجزائر</p>
+                <h3><i class="fas fa-phone"></i> تواصل معنا</h3>
+                <p><i class="fas fa-envelope"></i> support@rafikostad.com</p>
+                <p><i class="fab fa-whatsapp"></i> +213 XXX XXX XXX</p>
+                <p><i class="fas fa-map-marker-alt"></i> تلمسان، الجزائر</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 رفيق الأستاذ - Rafik Ostad v1.0.0. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2024 رفيق الأستاذ - Rafik Ostad v1.0.0. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
     <script>
-        // إنشاء معرض الصور (13 صورة)
+        // إنشاء معرض الصور
         function initGallery() {
             const gallery = document.getElementById('gallery');
             for (let i = 1; i <= 13; i++) {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
-                item.innerHTML = `<img src="images/screenshot-${i}.png" alt="صورة البرنامج ${i}">`;
+                item.innerHTML = `<img src="images/screenshot-${i}.png" alt="صورة البرنامج ${i}" onerror="this.src='https://via.placeholder.com/400x300/667eea/ffffff?text=صورة+${i}'">`;
                 item.onclick = () => window.open(`images/screenshot-${i}.png`, '_blank');
                 gallery.appendChild(item);
             }
@@ -496,94 +729,11 @@
             document.getElementById('contactPage').classList.add('hidden');
             
             document.getElementById(page + 'Page').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // معالجة تحميل الملفات
-        let selectedFiles = [];
-        
-        function handleFileSelect(event) {
-            selectedFiles = Array.from(event.target.files);
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = '';
-            
-            selectedFiles.forEach((file, index) => {
-                const fileItem = document.createElement('div');
-                fileItem.style.padding = '0.5rem';
-                fileItem.style.background = '#f0f0f0';
-                fileItem.style.borderRadius = '5px';
-                fileItem.style.marginTop = '0.5rem';
-                fileItem.innerHTML = `📎 ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
-                fileList.appendChild(fileItem);
-            });
-            
-            simulateUpload();
-        }
-
-        function simulateUpload() {
-            const progressBar = document.getElementById('progressBar');
-            const progressFill = document.getElementById('progressFill');
-            progressBar.style.display = 'block';
-            
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 10;
-                progressFill.style.width = progress + '%';
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        progressBar.style.display = 'none';
-                        progressFill.style.width = '0%';
-                    }, 1000);
-                }
-            }, 200);
-        }
-
-        // معالجة إرسال النموذج
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                subject: formData.get('subject'),
-                message: formData.get('message'),
-                files: selectedFiles.map(f => f.name)
-            };
-            
-            // هنا يمكنك إضافة كود إرسال البريد الإلكتروني
-            // يمكن استخدام خدمة مثل EmailJS أو Formspree
-            
-            const mailtoLink = `mailto:sifadev23@gmail.com?subject=${encodeURIComponent(getSubjectText(data.subject))}&body=${encodeURIComponent(
-                `الاسم: ${data.name}\nالبريد: ${data.email}\n\nالرسالة:\n${data.message}`
-            )}`;
-            
-            window.location.href = mailtoLink;
-            
-            alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-            this.reset();
-            selectedFiles = [];
-            document.getElementById('fileList').innerHTML = '';
-        });
-
-        function getSubjectText(value) {
-            const subjects = {
-                'activation': 'طلب تفعيل البرنامج',
-                'run-problem': 'مشكلة في تشغيل البرنامج',
-                'activation-problem': 'مشكلة في تفعيل البرنامج',
-                'database-problem': 'مشكلة في قواعد البيانات',
-                'feature-inquiry': 'استفسار حول خاصية بالبرنامج',
-                'feature-request': 'طلب إضافة خاصية جديدة',
-                'other': 'موضوع آخر'
-            };
-            return subjects[value] || 'رسالة جديدة';
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         // معالجة التحميلات
         function downloadFile(type) {
-            // ضع روابط التحميل الفعلية هنا
             const downloads = {
                 'setup-x64': 'downloads/RafikOstad-Setup-x64.exe',
                 'setup-x86': 'downloads/RafikOstad-Setup-x86.exe',
@@ -592,12 +742,14 @@
                 'manual': 'downloads/RafikOstad-Manual.pdf'
             };
             
-            alert('جارٍ تحميل الملف...\nرابط التحميل: ' + downloads[type]);
+            alert('جارٍ تحميل الملف...\nالمسار: ' + downloads[type]);
             // window.location.href = downloads[type];
         }
 
-        // تهيئة الصفحة
-        initGallery();
+        // تهيئة الصفحة عند التحميل
+        window.onload = function() {
+            initGallery();
+        };
     </script>
 </body>
 </html>
